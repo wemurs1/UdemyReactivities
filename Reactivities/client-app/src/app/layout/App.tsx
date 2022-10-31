@@ -13,17 +13,24 @@ function App() {
 
   return (
     <Fragment>
-      <NavBar />
-      <Container style={{ marginTop: '7em' }}>
-        <Route path='/' exact component={HomePage} />
-        <Route path='/activities' exact component={ActivityDashboard} />
-        <Route path='/activities/:id' component={ActivityDetails} />
-        <Route
-          key={location.key}
-          path={['/createActivity', '/manage/:id']}
-          component={ActivityForm}
-        />
-      </Container>
+      <Route path='/' exact component={HomePage} />
+      <Route
+        path={'/(.+)'}
+        render={() => (
+          <Fragment>
+            <NavBar />
+            <Container style={{ marginTop: '7em' }}>
+              <Route path='/activities' exact component={ActivityDashboard} />
+              <Route path='/activities/:id' component={ActivityDetails} />
+              <Route
+                key={location.key}
+                path={['/createActivity', '/manage/:id']}
+                component={ActivityForm}
+              />
+            </Container>
+          </Fragment>
+        )}
+      />
     </Fragment>
   );
 }
