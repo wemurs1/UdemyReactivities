@@ -15,7 +15,7 @@ export default class CommonStore {
         if (token) {
           window.localStorage.setItem('jwt', token);
         } else {
-          window.localStorage.removeItem('jet');
+          window.localStorage.removeItem('jwt');
         }
       }
     );
@@ -26,6 +26,7 @@ export default class CommonStore {
   };
 
   setToken = (token: string | null) => {
+    if (this.token === null) window.localStorage.removeItem('jwt');
     this.token = token;
   };
 
