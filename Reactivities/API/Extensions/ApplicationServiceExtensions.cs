@@ -44,6 +44,8 @@ namespace API.Extensions
 
             services.Configure<CloudinarySettings>(configuration.GetSection("Cloudinary"));
 
+            services.AddSignalR();
+
             return services;
         }
     }
