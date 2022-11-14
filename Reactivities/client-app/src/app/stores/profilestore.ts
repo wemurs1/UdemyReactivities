@@ -84,8 +84,28 @@ export default class ProfileStore {
           this.profile.photos = this.profile.photos.filter(
             (x) => x.id !== photo.id
           );
-          this.loading = false; 
+          this.loading = false;
         }
+      });
+    } catch (error) {
+      console.log(error);
+      runInAction(() => (this.loading = false));
+    }
+  };
+
+  updateProfile = async (profile: Partial<Profile>) => {
+    this.loading = true;
+    try {
+      await agent.Profiles.updateProfile(profile);
+      runInAction(() => {
+        if (
+          profile.displayName &&
+          profile.displayName !== store.userStore.user?.displayName
+        ) {
+          store.userStore.user!.displayName = profile.displayName;
+        }
+        this.profile = { ...this.profile, ...(profile as Profile) };
+        this.loading = false;
       });
     } catch (error) {
       console.log(error);
