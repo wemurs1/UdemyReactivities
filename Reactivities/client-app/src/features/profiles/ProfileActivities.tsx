@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
-import { Fragment, SyntheticEvent, useEffect } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Grid, Header, Image, Tab, TabProps } from 'semantic-ui-react';
 import { useStore } from '../../app/stores/store';
